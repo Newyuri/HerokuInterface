@@ -38,7 +38,7 @@ if (!$res) {
 }
 
 while ($row = $res->fetch_assoc()) {
-  var_dump($row);
+  //var_dump($row);
   $answer['title'] = $row['title'];
   $answer['time'] = $row['time'];
 }
