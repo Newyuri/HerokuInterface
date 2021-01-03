@@ -13,14 +13,11 @@ $mysql_conf = array(
 $mysqli = @new mysqli($mysql_conf['host'], $mysql_conf['db_user'], $mysql_conf['db_pwd']);
 
 if ($mysqli->connect_errno) {
-
-  die("could not connect to the database:\n" . $mysqli->connect_error);
-  //诊断连接错误
+	die("could not connect to the database:\n" . $mysqli->connect_error);
 	$answer['error']=getenv('HAVESEX');
-	echo json_encode($answer)
+
 } else {
 	$answer['config']=getenv('HAVESEX');
-	echo json_encode($answer)
 }
 
 // $mysqli->query("set names 'utf8';");//编码转化
@@ -43,12 +40,13 @@ if ($mysqli->connect_errno) {
 
 // while ($row = $res->fetch_assoc()) {
 
-// var_dump($row);
+//   var_dump($row);
 
 // }
 
-$res->free();
+// $res->free();
 
 $mysqli->close();
+exit(json_encode($answer))
 
 ?>
