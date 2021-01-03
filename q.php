@@ -30,7 +30,7 @@ if (!$select_db) {
 
 }
 
-$sql = "select * from widgets where id = '0';";
+$sql = "select * from gettime where id = '0';";
 
 $res = $mysqli->query($sql);
 
