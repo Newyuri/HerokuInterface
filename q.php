@@ -5,7 +5,7 @@ $answer = array();
 
 $mysql_conf = array(
   'host'  => getenv('DB_HOST'),
-  'db'   => '',
+  'db'   => getenv('DB_DB'),
   'db_user' => getenv('DB_USER'),
   'db_pwd' => getenv('DB_PWD')
 );
@@ -20,31 +20,33 @@ if ($mysqli->connect_errno) {
 	$answer['config']=getenv('HAVESEX');
 }
 
-// $mysqli->query("set names 'utf8';");//编码转化
+$mysqli->query("set names 'utf8';");//编码转化
 
-// $select_db = $mysqli->select_db($mysql_conf['db']);
+$select_db = $mysqli->select_db($mysql_conf['db']);
 
-// if (!$select_db) {
+if (!$select_db) {
 
-//   die("could not connect to the db:\n" . $mysqli->error);
+	die("could not connect to the db:\n" . $mysqli->error);
 
-// }$sql = "select uid from user where name = 'joshua';";
+}
 
-// $res = $mysqli->query($sql);
+$sql = "select * from widgets where id = '0';";
 
-// if (!$res) {
+$res = $mysqli->query($sql);
 
-//   die("sql error:\n" . $mysqli->error);
+if (!$res) {
 
-// }
+  die("sql error:\n" . $mysqli->error);
 
-// while ($row = $res->fetch_assoc()) {
+}
 
-//   var_dump($row);
+while ($row = $res->fetch_assoc()) {
 
-// }
+  var_dump($row);
 
-// $res->free();
+}
+
+$res->free();
 
 $mysqli->close();
 exit(json_encode($answer))
