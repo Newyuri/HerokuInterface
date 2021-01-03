@@ -1,10 +1,7 @@
 <?php
 header('Content-Type:application/json; charset=utf-8');
 
-// $answer = array();
-// $answer['config']=getenv('HAVESEX');
-// exit(json_encode($answer)); 
-
+$answer = array();
 
 $mysql_conf = array(
 
@@ -22,38 +19,42 @@ $mysqli = @new mysqli($mysql_conf['host'], $mysql_conf['db_user'], $mysql_conf['
 
 if ($mysqli->connect_errno) {
 
-  die("could not connect to the database:\n" . $mysqli->connect_error);//诊断连接错误
+  die("could not connect to the database:\n" . $mysqli->connect_error);
+  //诊断连接错误
+  $answer['error']="could not connect to the database:\n" . $mysqli->connect_error;
 
 } else {
-	echo "connect right";
+	$answer['config']=getenv('HAVESEX');
 }
 
-$mysqli->query("set names 'utf8';");//编码转化
+// $mysqli->query("set names 'utf8';");//编码转化
 
-$select_db = $mysqli->select_db($mysql_conf['db']);
+// $select_db = $mysqli->select_db($mysql_conf['db']);
 
-if (!$select_db) {
+// if (!$select_db) {
 
-  die("could not connect to the db:\n" . $mysqli->error);
+//   die("could not connect to the db:\n" . $mysqli->error);
 
-}$sql = "select uid from user where name = 'joshua';";
+// }$sql = "select uid from user where name = 'joshua';";
 
-$res = $mysqli->query($sql);
+// $res = $mysqli->query($sql);
 
-if (!$res) {
+// if (!$res) {
 
-  die("sql error:\n" . $mysqli->error);
+//   die("sql error:\n" . $mysqli->error);
 
-}
+// }
 
- while ($row = $res->fetch_assoc()) {
+// while ($row = $res->fetch_assoc()) {
 
-    var_dump($row);
+// var_dump($row);
 
-  }
+// }
 
 $res->free();
 
 $mysqli->close();
+
+exit(json_encode($answer)); 
 
 ?>
