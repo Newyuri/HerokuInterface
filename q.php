@@ -43,7 +43,8 @@ if (!$res) {
 while ($row = $res->fetch_assoc()) {
 
   var_dump($row);
-
+  echo $row['title'];
+  echo $row['time'];
 }
 
 $res->free();
