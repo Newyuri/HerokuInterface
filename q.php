@@ -21,7 +21,6 @@ if ($mysqli->connect_errno) {
 
   die("could not connect to the database:\n" . $mysqli->connect_error);
   //诊断连接错误
-  $answer['error']="could not connect to the database:\n" . $mysqli->connect_error;
 
 } else {
 	$answer['config']=getenv('HAVESEX');
