@@ -4,15 +4,10 @@ header('Content-Type:application/json; charset=utf-8');
 $answer = array();
 
 $mysql_conf = array(
-
   'host'  => getenv('DB_HOST'),
-
   'db'   => '',
-
   'db_user' => getenv('DB_USER'),
-
   'db_pwd' => getenv('DB_PWD')
-
 );
 
 $mysqli = @new mysqli($mysql_conf['host'], $mysql_conf['db_user'], $mysql_conf['db_pwd']);
@@ -21,9 +16,11 @@ if ($mysqli->connect_errno) {
 
   die("could not connect to the database:\n" . $mysqli->connect_error);
   //诊断连接错误
-
+	$answer['error']=getenv('HAVESEX');
+	echo json_encode($answer)
 } else {
 	$answer['config']=getenv('HAVESEX');
+	echo json_encode($answer)
 }
 
 // $mysqli->query("set names 'utf8';");//编码转化
@@ -53,7 +50,5 @@ if ($mysqli->connect_errno) {
 $res->free();
 
 $mysqli->close();
-
-exit(json_encode($answer)); 
 
 ?>
